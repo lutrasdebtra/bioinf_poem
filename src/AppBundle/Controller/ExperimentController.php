@@ -28,8 +28,8 @@ class ExperimentController extends Controller {
 
         $form = $this->createFormBuilder($experiment)
             ->add('title', TextType::class)
-            ->add('expType', ChoiceType::class, ['choices' => ['RNASeq' => '', 'Metabolomics' => '', 'DNASeq' => '', 'Proteomics' => ''], 'mapped' => false])
-            ->add('save', SubmitType::class, array('label' => 'Create Task'))
+            ->add('expType', ChoiceType::class, ['choices' => [''=>'','RNASeq' => '', 'Metabolomics' => '', 'DNASeq' => '', 'Proteomics' => ''], 'mapped' => false])
+            ->add('save', SubmitType::class, array('label' => 'Create Experiment'))
             ->getForm();
 
         $form->handleRequest($request);
