@@ -1,0 +1,38 @@
+<?php 
+// src/AppBundle/Entity/Experiment.php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="experiment")
+ */
+class Experiment {
+
+	/**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+	protected $id;
+
+	/**
+     * @ORM\Column(type="string")
+     */
+    protected $title;
+
+    /**
+     * @ORM\OneToMany(targetEntity="rnaseq", mappedBy="experiment")
+     */
+    protected $rnaSeq;
+
+    public function __construct()
+    {
+        $this->rnaSeq = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    protected $sampleNums;
+}

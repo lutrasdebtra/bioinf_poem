@@ -1,0 +1,110 @@
+<?php 
+// src/AppBundle/Entity/RNASeq.php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="rnaseq")
+ */
+class RNASeq {
+
+	/**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+	protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="experiment", inversedBy="rnaseq")
+     * @ORM\JoinColumn(name="experiment_id", referencedColumnName="id")
+     */
+    protected $experiment;
+
+    /**
+     * Protocol for sample preparation.
+     */
+
+	/**
+     * @ORM\Column(type="string")
+     */
+    protected $quality;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $ribodepleted;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $finalQuality;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $sampleNum;
+
+    /**
+     * Library Preparation.
+     */
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $protocolUsed;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $step1;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $step1Result;
+
+
+    /**
+     * Sequencing.
+     */
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $serviceProvider;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $platform;
+
+    /**
+     * TODO: RUN PARAMETERS
+     */
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $dataFiles;
+
+    /**
+     * Bioinformatic Analysis.
+     */
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $pipeline;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $pipelineParameters;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $resultFiles;
+}
