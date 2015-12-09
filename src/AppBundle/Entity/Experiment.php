@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="experiment")
@@ -22,19 +23,19 @@ class Experiment {
     protected $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="rnaseq", mappedBy="experiment")
-     */
-    protected $rnaSeq;
-
-    public function __construct()
-    {
-        $this->rnaSeq = new ArrayCollection();
-    }
-
-    /**
      * @ORM\Column(type="array")
      */
     protected $sampleNums;
+
+    /**
+     * @ORM\OneToMany(targetEntity="RNASeq", mappedBy="experiment")
+     */
+    protected $rnaSeqs;
+
+    public function __construct()
+    {
+        $this->rnaSeqs = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -97,13 +98,13 @@ class Experiment {
     /**
      * Add rnaSeq
      *
-     * @param \AppBundle\Entity\rnaseq $rnaSeq
+     * @param \AppBundle\Entity\RNASeq $rnaSeq
      *
      * @return Experiment
      */
-    public function addRnaSeq(\AppBundle\Entity\rnaseq $rnaSeq)
+    public function addRnaSeq(\AppBundle\Entity\RNASeq $rnaSeq)
     {
-        $this->rnaSeq[] = $rnaSeq;
+        $this->rnaSeqs[] = $rnaSeq;
 
         return $this;
     }
@@ -111,20 +112,20 @@ class Experiment {
     /**
      * Remove rnaSeq
      *
-     * @param \AppBundle\Entity\rnaseq $rnaSeq
+     * @param \AppBundle\Entity\RNASeq $rnaSeq
      */
-    public function removeRnaSeq(\AppBundle\Entity\rnaseq $rnaSeq)
+    public function removeRnaSeq(\AppBundle\Entity\RNASeq $rnaSeq)
     {
-        $this->rnaSeq->removeElement($rnaSeq);
+        $this->rnaSeqs->removeElement($rnaSeq);
     }
 
     /**
-     * Get rnaSeq
+     * Get rnaSeqs
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getRnaSeq()
+    public function getRnaSeqs()
     {
-        return $this->rnaSeq;
+        return $this->rnaSeqs;
     }
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="experiment")
@@ -22,17 +23,17 @@ class Experiment {
     protected $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="rnaseq", mappedBy="experiment")
-     */
-    protected $rnaSeq;
-
-    public function __construct()
-    {
-        $this->rnaSeq = new ArrayCollection();
-    }
-
-    /**
      * @ORM\Column(type="array")
      */
     protected $sampleNums;
+
+    /**
+     * @ORM\OneToMany(targetEntity="RNASeq", mappedBy="experiment")
+     */
+    protected $rnaSeqs;
+
+    public function __construct()
+    {
+        $this->rnaSeqs = new ArrayCollection();
+    }
 }

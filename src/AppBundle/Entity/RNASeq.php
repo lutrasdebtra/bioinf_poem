@@ -17,12 +17,6 @@ class RNASeq {
 	protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="experiment", inversedBy="rnaseq")
-     * @ORM\JoinColumn(name="experiment_id", referencedColumnName="id")
-     */
-    protected $experiment;
-
-    /**
      * Protocol for sample preparation.
      */
 
@@ -107,6 +101,12 @@ class RNASeq {
      * @ORM\Column(type="string")
      */
     protected $resultFiles;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Experiment", inversedBy="rnaSeqs")
+     * @ORM\JoinColumn(name="experiment_id", referencedColumnName="id")
+     */
+    protected $experiment;
 
     /**
      * Get id
@@ -433,11 +433,11 @@ class RNASeq {
     /**
      * Set experiment
      *
-     * @param \AppBundle\Entity\experiment $experiment
+     * @param \AppBundle\Entity\Experiment $experiment
      *
      * @return RNASeq
      */
-    public function setExperiment(\AppBundle\Entity\experiment $experiment = null)
+    public function setExperiment(\AppBundle\Entity\Experiment $experiment = null)
     {
         $this->experiment = $experiment;
 
@@ -447,7 +447,7 @@ class RNASeq {
     /**
      * Get experiment
      *
-     * @return \AppBundle\Entity\experiment
+     * @return \AppBundle\Entity\Experiment
      */
     public function getExperiment()
     {

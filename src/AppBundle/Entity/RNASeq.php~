@@ -17,12 +17,6 @@ class RNASeq {
 	protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="experiment", inversedBy="rnaseq")
-     * @ORM\JoinColumn(name="experiment_id", referencedColumnName="id")
-     */
-    protected $experiment;
-
-    /**
      * Protocol for sample preparation.
      */
 
@@ -107,4 +101,10 @@ class RNASeq {
      * @ORM\Column(type="string")
      */
     protected $resultFiles;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Experiment", inversedBy="rnaSeqs")
+     * @ORM\JoinColumn(name="experiment_id", referencedColumnName="id")
+     */
+    protected $experiment;
 }
