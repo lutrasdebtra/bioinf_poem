@@ -32,18 +32,10 @@ class ExperimentController extends Controller {
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-<<<<<<< Updated upstream
-            $em->persist($experiment);
-            foreach($experiment->getRNASeqs() as $rnaseq) {
-                $em->persist($rnaseq);
-            }
-=======
-
             $experiment = $form->getData(); // <===== Fill your entity
             $em->persist($experiment); //Here, just persist the experiment after filled it.
 
             // Unnecessary, doctrine will persist automatically thanks your OneToMany relation.
->>>>>>> Stashed changes
             $em->flush();
             return $this->redirectToRoute('experiment_index');
         }

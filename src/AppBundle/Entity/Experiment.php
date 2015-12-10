@@ -36,7 +36,7 @@ class Experiment {
     protected $sampleNums;
 
     /**
-     * @ORM\OneToMany(targetEntity="RNASeq", mappedBy="experiment", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="RNASeq", mappedBy="experiment", cascade={"all"})
      */
     protected $rnaSeqs;
 
@@ -112,9 +112,9 @@ class Experiment {
      */
     public function addRnaSeq(\AppBundle\Entity\RNASeq $rnaSeq)
     {
-        $this->rnaSeqs->add($rnaSeq);
+        $this->rnaSeqs[] = $rnaSeq;
 
-        return $this;
+        $rnaSeq->setExperiment($this);
     }
 
     /**
