@@ -18,7 +18,7 @@ class ExperimentType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('title', TextType::class)
-            ->add('expType', ChoiceType::class, ['choices' => [''=>'','RNASeq' => new RNASeq(), 'Metabolomics' => '', 'DNASeq' => '', 'Proteomics' => ''], 'mapped' => false])
+            ->add('expType', ChoiceType::class, ['choices' => [''=>'','RNASeq' => 'RNASeq', 'Metabolomics' => '', 'DNASeq' => '', 'Proteomics' => ''], 'mapped'=>false])
             ->add('save', SubmitType::class, array('label' => 'Create Experiment'))
             ->add('rnaseqs', CollectionType::class, array('entry_type' => RNASeqType::class,'allow_add' => true, 'by_reference' => false, 'allow_delete' => true));
     }

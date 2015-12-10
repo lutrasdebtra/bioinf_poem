@@ -15,7 +15,9 @@ class ExperimentController extends Controller {
      * @Route("/experiment/index", name="experiment_index")
      */
     public function indexAction() {
-        return $this->render('experiment/index.html.twig');
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Experiment');
+        $experiments = $repository->findAll();
+        return $this->render('experiment/index.html.twig',['experiments' => $experiments]);
     }
 
     /**
@@ -31,25 +33,35 @@ class ExperimentController extends Controller {
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($experiment);
+            foreach($experiment->getRNASeqs() as $rnaseq) {
+                $em->persist($rnaseq);
+            }
             $em->flush();
             return $this->redirectToRoute('experiment_index');
         }
 
-        return $this->render('experiment/new.html.twig', array('form' => $form->createView()));
+        return $this->render('experiment/form.html.twig', array('form' => $form->createView()));
     }
 
     /**
-     * @Route("/experiment/show/{experiment}", name="experiment_show")
+     * @Route("/experiment/show/{id}", name="experiment_show")
      */
-    public function showAction($experiment) {
+    public function showAction($id) {
         return $this->render('experiment/show.html.twig');
     }
 
     /**
-     * @Route("/experiment/edit/{experiment}", name="experiment_edit")
+     * @Route("/experiment/edit/{id}", name="experiment_edit")
      */
-    public function editAction($experiment) {
-        return $this->render('experiment/edit.html.twig');
+    public function editAction(Request $request, $id) {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Experiment');
+        $experiment = $repository->find($id);
+
+        $form = $this->createForm(ExperimentType::class, $experiment);
+
+        $form->handleRequest($request);
+
+        return $this->render('experiment/form.html.twig', array('form' => $form->createView()));
     }
 
 }

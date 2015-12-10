@@ -10,6 +10,9 @@
 			{{ form_errors(form) }}
 
     		{{ form_row(form.title) }}
+    						{% for rnaseq in form.rnaseqs %}
+        			{{ form_row(rnaseq.quality) }}
+    			{% endfor %}
     		{{ form_row(form.expType, { 'label' : 'Experiment Type', 'id' : 'expType_drop'}) }}
 			<div class="rnaseqs" data-prototype="{{ form_widget(form.rnaseqs.vars.prototype)|e }}">
 				{% for rnaseq in form.rnaseqs %}

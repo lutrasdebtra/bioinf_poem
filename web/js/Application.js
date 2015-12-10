@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
 
         var optionSelect = $('option:selected', this).text();
         // Remove old ExpType.
-        $('.exptype-form-div').remove();
+        //$('.exptype-form-div').remove();
         // Find correct type and run appropriate form.
         if (optionSelect == 'RNASeq') {
             addRNASeqForm($collectionHolder, $newLinkLi);

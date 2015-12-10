@@ -2,5 +2,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Experiments</h1>
+	<div class="experiment-index-div">
+    	<h1>Experiments</h1>
+    	<table class="table table-striped">
+    		<tr>
+    			<th>Title</th>
+    			<th></th>
+          <th></th>
+    		</tr>
+    		{% for exp in experiments %}
+    			<tr>
+      				<td>
+        				{{exp.title}}
+      				</td>
+              <td>
+                {% for r in exp.rnaseqs %}
+                  {{r.quality}}
+                {% endfor %}
+              </td> 
+      				<td>
+      					<a href="{{ path('experiment_edit', {'id': exp.id}) }}">Link</a>
+      				</td>
+    			</tr>
+    		{% endfor %}
+    	</table>
+	</div>
 {% endblock %}

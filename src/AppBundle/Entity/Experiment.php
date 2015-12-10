@@ -25,6 +25,12 @@ class Experiment {
     protected $title;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    protected $expType;
+
+    /**
      * @ORM\Column(type="array")
      */
     protected $sampleNums;
@@ -106,9 +112,7 @@ class Experiment {
      */
     public function addRnaSeq(\AppBundle\Entity\RNASeq $rnaSeq)
     {
-        $rnaSeq->setExperiment($this);
-
-        $this->rnaSeqs->add($rnaSeq);
+        $this->rnaSeqs[] = $rnaSeq;
 
         return $this;
     }
@@ -131,5 +135,29 @@ class Experiment {
     public function getRnaSeqs()
     {
         return $this->rnaSeqs;
+    }
+
+    /**
+     * Set expType
+     *
+     * @param string $expType
+     *
+     * @return Experiment
+     */
+    public function setExpType($expType)
+    {
+        $this->expType = $expType;
+
+        return $this;
+    }
+
+    /**
+     * Get expType
+     *
+     * @return string
+     */
+    public function getExpType()
+    {
+        return $this->expType;
     }
 }
