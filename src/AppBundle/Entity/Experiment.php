@@ -112,7 +112,7 @@ class Experiment {
      */
     public function addRnaSeq(\AppBundle\Entity\RNASeq $rnaSeq)
     {
-        $this->rnaSeqs[] = $rnaSeq;
+        $this->rnaSeqs->add($rnaSeq);
 
         return $this;
     }

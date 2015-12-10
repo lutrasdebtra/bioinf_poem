@@ -51,3 +51,26 @@ function addRNASeqForm($collectionHolder, $newLinkLi) {
     var $newFormLi = $('<div class="exptype-form-div"><h3>RNA Seq Experiment</h3></div>').append(newForm);
     $newLinkLi.before($newFormLi);
 }
+
+// keep track of how many sampleNum fields have been rendered
+var sampleNumCount = 0;
+
+jQuery(document).ready(function() {
+    jQuery('#add-another-sampleNum').click(function(e) {
+        e.preventDefault();
+
+        var sampleNumList = jQuery('#sampleNums-fields-list');
+
+        // grab the prototype template
+        var newWidget = sampleNumList.attr('data-prototype');
+        // replace the "__name__" used in the id and name of the prototype
+        // with a number that's unique to your emails
+        // end name attribute looks like name="contact[emails][2]"
+        newWidget = newWidget.replace(/__name__/g, sampleNumCount);
+        sampleNumCount++;
+
+        // create a new list element and add it to the list
+        var newDiv= jQuery('<div></div>').html(newWidget);
+        newDiv.appendTo(sampleNumList);
+    });
+})
