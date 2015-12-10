@@ -6,11 +6,17 @@
 {% block body %}
 	<div class="experiment-form-div">
 		<h1>New Experiment</h1>
-		{{ form_errors(form) }}
+		{{ form_start(form) }}
+			{{ form_errors(form) }}
 
-    	{{ form_row(form.title) }}
-    	{{ form_row(form.expType, { 'label' : 'Experiment Type' }) }}
-
-        {{ form_widget(form.save) }}
+    		{{ form_row(form.title) }}
+    		{{ form_row(form.expType, { 'label' : 'Experiment Type', 'id' : 'expType_drop'}) }}
+			<div class="rnaseqs" data-prototype="{{ form_widget(form.rnaseqs.vars.prototype)|e }}">
+				{% for rnaseq in form.rnaseqs %}
+        			{{ form_row(rnaseq.quality) }}
+    			{% endfor %}
+			</div>
+        	{{ form_widget(form.save) }}
+        {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="rnaseq")
@@ -105,6 +106,8 @@ class RNASeq {
     /**
      * @ORM\ManyToOne(targetEntity="Experiment", inversedBy="rnaSeqs")
      * @ORM\JoinColumn(name="experiment_id", referencedColumnName="id")
+     * @Assert\Type(type="AppBundle\Entity\Experiment")
+     * @Assert\Valid()
      */
     protected $experiment;
 

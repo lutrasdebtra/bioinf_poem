@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="experiment")
@@ -19,6 +20,7 @@ class Experiment {
 
 	/**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $title;
 
@@ -28,7 +30,7 @@ class Experiment {
     protected $sampleNums;
 
     /**
-     * @ORM\OneToMany(targetEntity="RNASeq", mappedBy="experiment")
+     * @ORM\OneToMany(targetEntity="RNASeq", mappedBy="experiment", cascade={"persist"})
      */
     protected $rnaSeqs;
 
@@ -104,7 +106,9 @@ class Experiment {
      */
     public function addRnaSeq(\AppBundle\Entity\RNASeq $rnaSeq)
     {
-        $this->rnaSeqs[] = $rnaSeq;
+        $rnaSeq->setExperiment($this);
+
+        $this->rnaSeqs->add($rnaSeq);
 
         return $this;
     }
