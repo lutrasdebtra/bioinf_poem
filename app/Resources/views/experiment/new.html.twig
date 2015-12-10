@@ -1,26 +1,16 @@
 {# app/Resources/views/experiment/new.html.twig #}
+{% extends "base.html.twig" %}
 
-<html>
-    <head>
-        {# ... #}
-            <link href="{{ asset('css/Application.css') }}" rel="stylesheet" />
-            <link rel="stylesheet"
-            href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
-    </head>
-    <body>
-        {# ... #}
+{% block title %}POEM - New Experiment{% endblock %}
 
-        {% block javascripts %}
-            <script src="{{ asset('js/main.js') }}"></script>
-        {% endblock %}
+{% block body %}
+	<div class="experiment-form-div">
+		<h1>New Experiment</h1>
+		{{ form_errors(form) }}
 
-<div class="experiment-form-div">
-{{ form_start(form) }}
-	<h1>New Experiment</h1>
-    {{ form_errors(form) }}
+    	{{ form_row(form.title) }}
+    	{{ form_row(form.expType, { 'label' : 'Experiment Type' }) }}
 
-    {{ form_row(form.title) }}
-{{ form_end(form) }}
-</div>
-    </body>
-</html>
+        {{ form_widget(form.save) }}
+    </div>
+{% endblock %}

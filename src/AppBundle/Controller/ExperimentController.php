@@ -4,11 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Experiment;
 use AppBundle\Entity\RNASeq;
+use AppBundle\Form\Type\ExperimentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -26,11 +24,7 @@ class ExperimentController extends Controller {
     public function newAction(Request $request) {
         $experiment = new Experiment();
 
-        $form = $this->createFormBuilder($experiment)
-            ->add('title', TextType::class)
-            ->add('expType', ChoiceType::class, ['choices' => [''=>'','RNASeq' => '', 'Metabolomics' => '', 'DNASeq' => '', 'Proteomics' => ''], 'mapped' => false])
-            ->add('save', SubmitType::class, array('label' => 'Create Experiment'))
-            ->getForm();
+        $form = $this->createForm(ExperimentType::class, $experiment);
 
         $form->handleRequest($request);
 
