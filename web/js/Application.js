@@ -56,13 +56,9 @@ function addRNASeqForm($collectionHolder, $newLinkLi) {
 var sampleNumCount = 0;
 
 jQuery(document).ready(function() {   
-    jQuery('#add-another-sampleNum').click(function(e) {
-        e.preventDefault();
-
-        var sampleNumList = jQuery('#sampleNums-fields-list');
-
-        // grab the prototype template
-        var newWidget = sampleNumList.attr('data-prototype');
+    var sampleNumList = jQuery('#sampleNums-fields-list');
+    // grab the prototype template
+    var newWidget = sampleNumList.attr('data-prototype');
         // replace the "__name__" used in the id and name of the prototype
         // with a number that's unique to your emails
         // end name attribute looks like name="contact[emails][2]"
@@ -71,6 +67,23 @@ jQuery(document).ready(function() {
 
         // create a new list element and add it to the list
         var newDiv= jQuery('<div></div>').html(newWidget);
+        newDiv.appendTo(sampleNumList);
+
+    jQuery('#add-another-sampleNum').click(function(e) {
+        e.preventDefault();
+
+        sampleNumList = jQuery('#sampleNums-fields-list');
+
+        // grab the prototype template
+        newWidget = sampleNumList.attr('data-prototype');
+        // replace the "__name__" used in the id and name of the prototype
+        // with a number that's unique to your emails
+        // end name attribute looks like name="contact[emails][2]"
+        newWidget = newWidget.replace(/__name__/g, sampleNumCount);
+        sampleNumCount++;
+
+        // create a new list element and add it to the list
+        newDiv= jQuery('<div></div>').html(newWidget);
         newDiv.appendTo(sampleNumList);
     });
 })
