@@ -55,7 +55,7 @@ function addRNASeqForm($collectionHolder, $newLinkLi) {
 // keep track of how many sampleNum fields have been rendered
 var sampleNumCount = 0;
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function() {   
     jQuery('#add-another-sampleNum').click(function(e) {
         e.preventDefault();
 

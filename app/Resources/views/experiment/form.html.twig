@@ -10,6 +10,7 @@
 			{{ form_errors(form) }}
 
     		{{ form_row(form.title) }}
+            {{ form_label(form.sampleNums) }}
     		<div id="sampleNums-fields-list" data-prototype="{{ form_widget(form.sampleNums.vars.prototype)|e }}"></div>
         	{% for sampleNumsField in form.sampleNums %}
         		<div>
@@ -26,6 +27,6 @@
     			{% endfor %}
 			</div>
         	{{ form_widget(form.save) }}
-        {{ form_end(form) }}
+        {{ form_end(form, {'render_rest': false}) }}
     </div>
 {% endblock %}
