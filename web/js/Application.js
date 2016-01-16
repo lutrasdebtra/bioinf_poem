@@ -52,22 +52,21 @@ function addRNASeqForm($collectionHolder, $newLinkLi) {
     $newLinkLi.before($newFormLi);
 }
 
+/*
+ * Handles Experiment Sample Numbers.
+ */
+
 // keep track of how many sampleNum fields have been rendered
 var sampleNumCount = 0;
 
 jQuery(document).ready(function() {   
+    // Adds a default Sample Number.
     var sampleNumList = jQuery('#sampleNums-fields-list');
-    // grab the prototype template
     var newWidget = sampleNumList.attr('data-prototype');
-        // replace the "__name__" used in the id and name of the prototype
-        // with a number that's unique to your emails
-        // end name attribute looks like name="contact[emails][2]"
-        newWidget = newWidget.replace(/__name__/g, sampleNumCount);
-        sampleNumCount++;
-
-        // create a new list element and add it to the list
-        var newDiv= jQuery('<div></div>').html(newWidget);
-        newDiv.appendTo(sampleNumList);
+    newWidget = newWidget.replace(/__name__/g, sampleNumCount);
+    sampleNumCount++;
+    var newDiv= jQuery('<div></div>').html(newWidget);
+    newDiv.appendTo(sampleNumList);
 
     jQuery('#add-another-sampleNum').click(function(e) {
         e.preventDefault();
