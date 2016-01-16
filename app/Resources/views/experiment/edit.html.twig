@@ -1,6 +1,11 @@
 {# app/Resources/views/experiment/edit.html.twig #}
 {% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Edit Experiment</h1>
+{% block title %}POEM - Edit Experiment{% endblock %}
+{% block outerDiv %}
+		<div class="experiment-form-div">
+        {% block mainTitle %}
+        	<h1>Edit Experiment</h1>
+        {% endblock %}
+        {% block body %}{% endblock %}
+        </div>
 {% endblock %}

@@ -41,7 +41,7 @@ class ExperimentController extends Controller {
         }
 
 
-        return $this->render('experiment/form.html.twig', array('form' => $form->createView()));
+        return $this->render('experiment/form.html.twig', array('form' => $form->createView(), 'new' => true));
     }
 
     /**
@@ -62,7 +62,7 @@ class ExperimentController extends Controller {
 
         $form->handleRequest($request);
 
-        return $this->render('experiment/form.html.twig', array('form' => $form->createView()));
+        return $this->render('experiment/form.html.twig', array('form' => $form->createView(), 'new' => false));
     }
 
 }

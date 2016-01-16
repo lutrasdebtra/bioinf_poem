@@ -1,5 +1,5 @@
 {# app/Resources/views/experiment/form.html.twig #}
-{% extends "experiment/new.html.twig" %}
+{% extends new ? "experiment/new.html.twig" : "experiment/edit.html.twig"%}
 {% block body %}
 		{{ form_start(form) }}
             {% do form.sampleNums.setRendered %}
