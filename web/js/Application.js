@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
 
         var optionSelect = $('option:selected', this).text();
         // Remove old ExpType.
-        //$('.exptype-form-div').remove();
+        $('.exptype-form-div').remove();
         // Find correct type and run appropriate form.
         if (optionSelect == 'RNASeq') {
             addRNASeqForm($collectionHolder, $newLinkLi);
@@ -59,14 +59,21 @@ function addRNASeqForm($collectionHolder, $newLinkLi) {
 // keep track of how many sampleNum fields have been rendered
 var sampleNumCount = 0;
 
-jQuery(document).ready(function() {   
+jQuery(document).ready(function() {  
+    // Hides control-label.
+    $('.control-label').hide();
+
     // Adds a default Sample Number.
     var sampleNumList = jQuery('#sampleNums-fields-list');
     var newWidget = sampleNumList.attr('data-prototype');
     newWidget = newWidget.replace(/__name__/g, sampleNumCount);
     sampleNumCount++;
-    var newDiv= jQuery('<div></div>').html(newWidget);
-    newDiv.appendTo(sampleNumList);
+    var newDiv= jQuery('<div class="sampleNumExpDiv"></div>').html(newWidget);
+    // Avoids adding in edit form (e.g. if there are already sample Numbers).
+    if (!($('[id*="experiment_sampleNums_"]').length)) {
+        sampleNumCount++;
+        newDiv.appendTo(sampleNumList);
+    }
 
     jQuery('#add-another-sampleNum').click(function(e) {
         e.preventDefault();
@@ -82,7 +89,7 @@ jQuery(document).ready(function() {
         sampleNumCount++;
 
         // create a new list element and add it to the list
-        newDiv= jQuery('<div></div>').html(newWidget);
+        newDiv= jQuery('<div class="sampleNumExpDiv"></div>').html(newWidget);
         newDiv.appendTo(sampleNumList);
     });
 })

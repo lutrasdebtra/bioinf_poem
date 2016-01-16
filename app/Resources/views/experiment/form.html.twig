@@ -1,4 +1,4 @@
-{# app/Resources/views/experiment/new.html.twig #}
+{# app/Resources/views/experiment/form.html.twig #}
 {% extends "base.html.twig" %}
 
 {% block title %}POEM - New Experiment{% endblock %}
@@ -25,7 +25,22 @@
     		{{ form_row(form.expType, { 'label' : 'Experiment Type', 'id' : 'expType_drop'}) }}
 			<div class="rnaseqs" data-prototype="{{ form_widget(form.rnaseqs.vars.prototype)|e }}">
 				{% for rnaseq in form.rnaseqs %}
-        			{{ form_row(rnaseq.quality) }}
+                    <div class="exptype-form-div">
+                        <h3>RNA Seq Experiment</h3>
+            			{{ form_row(rnaseq.quality) }}
+                        {{ form_row(rnaseq.ribodepleted) }}
+                        {{ form_row(rnaseq.finalQuality) }}
+                        {{ form_row(rnaseq.sampleNum) }}
+                        {{ form_row(rnaseq.protocolUsed) }}
+                        {{ form_row(rnaseq.step1) }}
+                        {{ form_row(rnaseq.step1Result) }}
+                        {{ form_row(rnaseq.serviceProvider) }}
+                        {{ form_row(rnaseq.platform) }}
+                        {{ form_row(rnaseq.dataFiles) }}
+                        {{ form_row(rnaseq.pipeline) }}
+                        {{ form_row(rnaseq.pipelineParameters) }}
+                        {{ form_row(rnaseq.resultFiles) }}
+                    </div>
     			{% endfor %}
 			</div>
         	{{ form_widget(form.save) }}
