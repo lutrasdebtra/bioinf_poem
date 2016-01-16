@@ -60,8 +60,6 @@ function addRNASeqForm($collectionHolder, $newLinkLi) {
 var sampleNumCount = 0;
 
 jQuery(document).ready(function() {  
-    // Hides control-label.
-    $('.control-label').hide();
 
     // Adds a default Sample Number.
     var sampleNumList = jQuery('#sampleNums-fields-list');

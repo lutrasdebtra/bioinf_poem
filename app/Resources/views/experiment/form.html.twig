@@ -1,11 +1,6 @@
 {# app/Resources/views/experiment/form.html.twig #}
-{% extends "base.html.twig" %}
-
-{% block title %}POEM - New Experiment{% endblock %}
-
+{% extends "experiment/new.html.twig" %}
 {% block body %}
-	<div class="experiment-form-div">
-		<h1>New Experiment</h1>
 		{{ form_start(form) }}
             {% do form.sampleNums.setRendered %}
             {% do form.rnaseqs.setRendered %}
@@ -17,7 +12,7 @@
         	{% for sampleNumsField in form.sampleNums %}
         		<div>
             		{{ form_errors(sampleNumsField) }}
-            		{{ form_row(sampleNumsField) }}
+            		{{ form_widget(sampleNumsField) }}
 				</div>
     		{% endfor %}
     		<a href="#" id="add-another-sampleNum">Add another Sample Number</a>
@@ -45,5 +40,4 @@
 			</div>
         	{{ form_widget(form.save) }}
         {{ form_end(form) }}
-    </div>
 {% endblock %}
