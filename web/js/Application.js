@@ -19,17 +19,29 @@ jQuery(document).ready(function() {
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-    $('#expType_drop').on('change', function(e) {
-        // prevent the link from creating a "#" on the URL
-        e.preventDefault();
+    //Get previous value.
+    var currVal = $('#expType_drop').val();
+    $('#expType_drop').data("value", currVal);
 
-        var optionSelect = $('option:selected', this).text();
-        // Remove old ExpType.
-        $('.exptype-form-div').remove();
-        // Find correct type and run appropriate form.
-        if (optionSelect == 'RNASeq') {
-            addRNASeqForm($collectionHolder, $newLinkLi);
+    $('#expType_drop').on('change', function(e) {
+        var r = confirm("Are you sure you want to delete the current experiment?");
+        if (r == true) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            var optionSelect = $('option:selected', this).text();
+            // Remove old ExpType.
+            $('.exptype-form-div').remove();
+            // Find correct type and run appropriate form.
+            if (optionSelect == 'RNASeq') {
+                addRNASeqForm($collectionHolder, $newLinkLi);
+            }
+        } else {
+            $(this).val($.data(this, "value"));
+            return false;
         }
+
+     $.data(this, "value", $(this).val());
     });
 });
 
