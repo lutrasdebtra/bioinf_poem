@@ -17,18 +17,18 @@ class RNASeqType extends AbstractType {
             ->add('quality', TextType::class)
             ->add('ribodepleted', ChoiceType::class,['choices' =>['Yes' => true,
         'No' => false], 'choices_as_values' => true, 'expanded' => true, 'multiple' => false])
-            ->add('finalQuality', TextType::class)
-            ->add('sampleNum', IntegerType::class)
-            ->add('protocolUsed', TextType::class)
+            ->add('finalQuality', TextType::class, ['label' => 'Final Quality'])
+            ->add('sampleNum', IntegerType::class, ['label' => 'Sample Number'])
+            ->add('protocolUsed', TextType::class, ['label' => 'Protocol Used'])
             ->add('step1', ChoiceType::class,['choices' =>['Yes' => true,
-        'No' => false], 'choices_as_values' => true, 'expanded' => true, 'multiple' => false])
-            ->add('step1Result', TextType::class)
-            ->add('serviceProvider', TextType::class)
+        'No' => false], 'choices_as_values' => true, 'expanded' => true, 'multiple' => false, 'label' => 'Step One'])
+            ->add('step1Result', TextType::class, ['label' => 'Step One Result'])
+            ->add('serviceProvider', TextType::class, ['label' => 'Service Provider'])
             ->add('platform', TextType::class)
-            ->add('dataFiles', TextType::class)
+            ->add('dataFiles', TextType::class, ['label' => 'Data Files'])
             ->add('pipeline', TextType::class)
-            ->add('pipelineParameters', TextType::class)
-            ->add('resultFiles', TextType::class);
+            ->add('pipelineParameters', TextType::class, ['label' => 'Pipeline Parameters'])
+            ->add('resultFiles', TextType::class, ['label' => 'Result Files']);
     }
 
     public function configureOptions(OptionsResolver $resolver) {

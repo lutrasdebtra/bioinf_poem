@@ -24,7 +24,7 @@ class ExperimentType extends AbstractType {
                 ['entry_type' => RNASeqType::class,'allow_add' => true, 
                 'by_reference' => false, 'allow_delete' => true])
             ->add('sampleNums', CollectionType::class,
-                ['entry_type' => IntegerType::class ,'allow_add' => true, 'prototype' => true ])
+                ['entry_type' => IntegerType::class ,'allow_add' => true, 'prototype' => true, 'label' => 'Sample Number(s)' ])
             ->add('save', SubmitType::class, ['label' => 'Submit']);
     }
 
