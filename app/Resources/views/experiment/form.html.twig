@@ -39,5 +39,6 @@
     			{% endfor %}
 			</div>
         	{{ form_widget(form.save) }}
+            <a href="{{ path('experiment_index') }}" class="btn btn-danger">Cancel</a>
         {{ form_end(form) }}
 {% endblock %}

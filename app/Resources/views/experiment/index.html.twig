@@ -4,24 +4,18 @@
 {% block body %}
 	<div class="experiment-index-div">
     	<h1>Experiments</h1>
-    	<table class="table table-striped">
+    	<table class="table table-striped table-bordered">
     		<tr>
     			<th>Title</th>
     			<th></th>
-          <th></th>
     		</tr>
     		{% for exp in experiments %}
     			<tr>
       				<td>
         				{{exp.title}}
       				</td>
-              <td>
-                {% for r in exp.rnaseqs %}
-                  {{r.quality}}
-                {% endfor %}
-              </td> 
       				<td>
-      					<a href="{{ path('experiment_edit', {'id': exp.id}) }}">Link</a>
+      					<a href="{{ path('experiment_edit', {'id': exp.id}) }}" class="btn btn-default">Link</a>
       				</td>
     			</tr>
     		{% endfor %}

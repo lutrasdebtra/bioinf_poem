@@ -25,7 +25,7 @@ class ExperimentType extends AbstractType {
                 'by_reference' => false, 'allow_delete' => true])
             ->add('sampleNums', CollectionType::class,
                 ['entry_type' => IntegerType::class ,'allow_add' => true, 'prototype' => true, 'label' => 'Sample Number(s)' ])
-            ->add('save', SubmitType::class, ['label' => 'Submit']);
+            ->add('save', SubmitType::class, ['label' => 'Submit', 'attr' => array('class' => 'btn btn-success')]);
     }
 
     public function configureOptions(OptionsResolver $resolver) {
