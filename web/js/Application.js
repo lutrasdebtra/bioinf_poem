@@ -24,14 +24,21 @@ jQuery(document).ready(function() {
     $('#expType_drop').data("value", currVal);
 
     $('#expType_drop').on('change', function(e) {
-        var r = confirm("Are you sure you want to delete the current experiment?");
+        // If there is already an experiment, check before deletion.
+        if ($('.exptype-form-div')[0]) {
+            var r = confirm("Are you sure you want to delete the current experiment?");
+        } else {
+            var r = true;
+        }
         if (r == true) {
             // prevent the link from creating a "#" on the URL
             e.preventDefault();
 
             var optionSelect = $('option:selected', this).text();
-            // Remove old ExpType.
-            $('.exptype-form-div').remove();
+            // Remove old ExpType if exists.
+            if ($('.exptype-form-div')[0]) {
+                $('.exptype-form-div').remove();
+            }
             // Find correct type and run appropriate form.
             if (optionSelect == 'RNASeq') {
                 addRNASeqForm($collectionHolder, $newLinkLi);
