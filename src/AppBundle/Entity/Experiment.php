@@ -79,19 +79,21 @@ class Experiment {
         return $this->title;
     }
 
-    /**
-     * Set sampleNums
-     *
-     * @param array $sampleNums
-     *
-     * @return Experiment
-     */
-    public function setSampleNums($sampleNums)
+    public function addSampleNum($sampleNum)
     {
-        $this->sampleNums = $sampleNums;
-
-        return $this;
+        $this->sampleNums[] = $sampleNum;
     }
+
+    /**
+     * Remove rnaSeq
+     *
+     * @param \AppBundle\Entity\RNASeq $rnaSeq
+     */
+    public function removeSampleNum($sampleNum)
+    {
+        $this->sampleNums->removeElement($sampleNum);
+    }
+
 
     /**
      * Get sampleNums

@@ -11,14 +11,15 @@
     		</tr>
     		{% for exp in experiments %}
     			<tr>
-      				<td>
+      				<td style="width:95%">
         				{{exp.title}}
       				</td>
-      				<td>
+      				<td align="center" valign="middle">
       					<a href="{{ path('experiment_edit', {'id': exp.id}) }}" class="btn btn-default">Link</a>
       				</td>
     			</tr>
     		{% endfor %}
     	</table>
+      <a href="{{ path('experiment_new') }}" class="btn btn-primary btn-lg btn-block">New Experiment</a>
 	</div>
 {% endblock %}
