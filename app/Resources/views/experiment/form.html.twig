@@ -4,6 +4,7 @@
 		{{ form_start(form) }}
             {% do form.sampleNums.setRendered %}
             {% do form.rnaseqs.setRendered %}
+            {% do form.dnaseqs.setRendered %}
 			{{ form_errors(form) }}
 
     		{{ form_row(form.title) }}
@@ -38,6 +39,14 @@
                     </div>
     			{% endfor %}
 			</div>
+            <div class="dnaseqs" data-prototype="{{ form_widget(form.dnaseqs.vars.prototype)|e }}">
+            {% for dnaseq in form.dnaseqs %}
+                    <div class="exptype-form-div">
+                        <h3>DNA Seq Experiment</h3>
+                        {{ form_row(dnaseq.quality) }}
+                    </div>
+                {% endfor %}
+            </div>
         	{{ form_widget(form.save) }}
             <a href="{{ path('experiment_index') }}" class="btn btn-danger">Cancel</a>
         {{ form_end(form) }}

@@ -40,6 +40,11 @@ class Experiment {
      */
     protected $rnaSeqs;
 
+    /**
+     * @ORM\OneToMany(targetEntity="DNASeq", mappedBy="experiment", cascade={"all"})
+     */
+    protected $dnaSeqs;
+
     public function __construct()
     {
         $this->rnaSeqs = new ArrayCollection();
@@ -137,6 +142,40 @@ class Experiment {
     public function getRnaSeqs()
     {
         return $this->rnaSeqs;
+    }
+
+    /**
+     * Add dnaSeq
+     *
+     * @param \AppBundle\Entity\DNASeq $dnaSeq
+     *
+     * @return Experiment
+     */
+    public function addDnaSeq(\AppBundle\Entity\DNASeq $dnaSeq)
+    {
+        $this->dnaSeqs[] = $dnaSeq;
+
+        $dnaSeq->setExperiment($this);
+    }
+
+    /**
+     * Remove dnaSeq
+     *
+     * @param \AppBundle\Entity\DNASeq $dnaSeq
+     */
+    public function removeDnaSeq(\AppBundle\Entity\DNASeq $dnaSeq)
+    {
+        $this->dnaSeqs->removeElement($dnaSeq);
+    }
+
+    /**
+     * Get dnaSeqs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDnaSeqs()
+    {
+        return $this->dnaSeqs;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\RNASeq;
+use AppBundle\Entity\DNASeq;
 use AppBundle\Form\Type\RNASeqType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,9 +20,12 @@ class ExperimentType extends AbstractType {
         $builder
             ->add('title', TextType::class)
             ->add('expType', ChoiceType::class, 
-                ['choices' => [''=>'','RNASeq' => 'RNASeq', 'Metabolomics' => '', 'DNASeq' => '', 'Proteomics' => '']])
-                        ->add('rnaseqs', CollectionType::class, 
+                ['choices' => [''=>'','RNASeq' => 'RNASeq', 'Metabolomics' => '', 'DNASeq' => 'DNASeq', 'Proteomics' => '']])
+            ->add('rnaseqs', CollectionType::class, 
                 ['entry_type' => RNASeqType::class,'allow_add' => true, 
+                'by_reference' => false, 'allow_delete' => true])
+            ->add('dnaseqs', CollectionType::class, 
+                ['entry_type' => DNASeqType::class,'allow_add' => true, 
                 'by_reference' => false, 'allow_delete' => true])
             ->add('sampleNums', CollectionType::class,
                 ['entry_type' => IntegerType::class ,'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'prototype' => true, 'label' => 'Sample Number(s)' ])
