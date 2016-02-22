@@ -40,14 +40,15 @@ jQuery(document).ready(function() {
                 $collectionHolder.data('index', $collectionHolder.find(':input').length);
                 addRNASeqForm($collectionHolder, $newLinkLi);
             } else if (optionSelect == 'DNASeq') {
-                // Get the div that holds the collection of rnaseqs
                 $collectionHolder = $('div.dnaseqs');
-                // add the "add an RNASeq Experiment" anchor and div to the rnaseqs div
                 $collectionHolder.append($newLinkLi);
-                // count the current form inputs we have (e.g. 2), use that as the new
-                // index when inserting a new item (e.g. 2)
                 $collectionHolder.data('index', $collectionHolder.find(':input').length);
                 addDNASeqForm($collectionHolder, $newLinkLi);
+            } else if (optionSelect == 'Metabolomics') {
+                $collectionHolder = $('div.metabolomics');
+                $collectionHolder.append($newLinkLi);
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
+                addMetabolomicForm($collectionHolder, $newLinkLi);
             }
         } else {
             $(this).val($.data(this, "value"));
@@ -93,6 +94,25 @@ function addDNASeqForm($collectionHolder, $newLinkLi) {
 
     // Display the form in the page in an li, before the "Add a tag" link li
     var $newFormLi = $('<div class="exptype-form-div"><h3>DNA Seq Experiment</h3></div>').append(newForm);
+    $newLinkLi.before($newFormLi);
+}
+
+function addMetabolomicForm($collectionHolder, $newLinkLi) {
+    // Get the data-prototype explained earlier
+    var prototype = $collectionHolder.data('prototype');
+
+    // get the new index
+    var index = $collectionHolder.data('index');
+
+    // Replace '__name__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    var newForm = prototype.replace(/__name__/g, index);
+
+    // increase the index with one for the next item
+    $collectionHolder.data('index', index + 1);
+
+    // Display the form in the page in an li, before the "Add a tag" link li
+    var $newFormLi = $('<div class="exptype-form-div"><h3>Metabolomics Experiment</h3></div>').append(newForm);
     $newLinkLi.before($newFormLi);
 }
 

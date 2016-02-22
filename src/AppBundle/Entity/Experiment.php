@@ -45,6 +45,11 @@ class Experiment {
      */
     protected $dnaSeqs;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Metabolomic", mappedBy="experiment", cascade={"all"})
+     */
+    protected $metabolomics;
+
     public function __construct()
     {
         $this->rnaSeqs = new ArrayCollection();
@@ -176,6 +181,40 @@ class Experiment {
     public function getDnaSeqs()
     {
         return $this->dnaSeqs;
+    }
+
+    /**
+     * Add metabolomic
+     *
+     * @param \AppBundle\Entity\Metabolomic $metabolomic
+     *
+     * @return Experiment
+     */
+    public function addMetabolomic(\AppBundle\Entity\Metabolomic $metabolomic)
+    {
+        $this->metabolomic[] = $metabolomic;
+
+        $metabolomic->setExperiment($this);
+    }
+
+    /**
+     * Remove metabolomic
+     *
+     * @param \AppBundle\Entity\Metabolomic $metabolomic
+     */
+    public function removeMetabolomic(\AppBundle\Entity\Metabolomic $metabolomic)
+    {
+        $this->metabolomics->removeElement($metabolomic);
+    }
+
+    /**
+     * Get metabolomics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMetabolomics()
+    {
+        return $this->metabolomics;
     }
 
     /**
