@@ -38,17 +38,17 @@ jQuery(document).ready(function() {
                 // count the current form inputs we have (e.g. 2), use that as the new
                 // index when inserting a new item (e.g. 2)
                 $collectionHolder.data('index', $collectionHolder.find(':input').length);
-                addRNASeqForm($collectionHolder, $newLinkLi);
+                addForm($collectionHolder, $newLinkLi, "RNA Seq Experiment");
             } else if (optionSelect == 'DNASeq') {
                 $collectionHolder = $('div.dnaseqs');
                 $collectionHolder.append($newLinkLi);
                 $collectionHolder.data('index', $collectionHolder.find(':input').length);
-                addDNASeqForm($collectionHolder, $newLinkLi);
+                addForm($collectionHolder, $newLinkLi, "DNA Seq Experiment");
             } else if (optionSelect == 'Metabolomics') {
                 $collectionHolder = $('div.metabolomics');
                 $collectionHolder.append($newLinkLi);
                 $collectionHolder.data('index', $collectionHolder.find(':input').length);
-                addMetabolomicForm($collectionHolder, $newLinkLi);
+                addForm($collectionHolder, $newLinkLi, "Metabolomics Experiment");
             }
         } else {
             $(this).val($.data(this, "value"));
@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
     });
 });
 
-function addRNASeqForm($collectionHolder, $newLinkLi) {
+function addForm($collectionHolder, $newLinkLi, $formType) {
     // Get the data-prototype explained earlier
     var prototype = $collectionHolder.data('prototype');
 
@@ -74,45 +74,7 @@ function addRNASeqForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div class="exptype-form-div"><h3>RNA Seq Experiment</h3></div>').append(newForm);
-    $newLinkLi.before($newFormLi);
-}
-
-function addDNASeqForm($collectionHolder, $newLinkLi) {
-    // Get the data-prototype explained earlier
-    var prototype = $collectionHolder.data('prototype');
-
-    // get the new index
-    var index = $collectionHolder.data('index');
-
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    var newForm = prototype.replace(/__name__/g, index);
-
-    // increase the index with one for the next item
-    $collectionHolder.data('index', index + 1);
-
-    // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div class="exptype-form-div"><h3>DNA Seq Experiment</h3></div>').append(newForm);
-    $newLinkLi.before($newFormLi);
-}
-
-function addMetabolomicForm($collectionHolder, $newLinkLi) {
-    // Get the data-prototype explained earlier
-    var prototype = $collectionHolder.data('prototype');
-
-    // get the new index
-    var index = $collectionHolder.data('index');
-
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    var newForm = prototype.replace(/__name__/g, index);
-
-    // increase the index with one for the next item
-    $collectionHolder.data('index', index + 1);
-
-    // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div class="exptype-form-div"><h3>Metabolomics Experiment</h3></div>').append(newForm);
+    var $newFormLi = $('<div class="exptype-form-div"><h3>' + $formType + '</h3></div>').append(newForm);
     $newLinkLi.before($newFormLi);
 }
 
