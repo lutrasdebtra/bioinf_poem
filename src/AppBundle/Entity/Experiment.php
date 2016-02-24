@@ -50,6 +50,11 @@ class Experiment {
      */
     protected $metabolomics;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Proteomic", mappedBy="experiment", cascade={"all"})
+     */
+    protected $proteomics;
+
     public function __construct()
     {
         $this->rnaSeqs = new ArrayCollection();
@@ -216,6 +221,41 @@ class Experiment {
     {
         return $this->metabolomics;
     }
+
+    /**
+     * Add proteomic
+     *
+     * @param \AppBundle\Entity\Proteomic $proteomic
+     *
+     * @return Experiment
+     */
+    public function addProteomic(\AppBundle\Entity\Proteomic $proteomic)
+    {
+        $this->proteomic[] = $proteomic;
+
+        $proteomic->setExperiment($this);
+    }
+
+    /**
+     * Remove proteomic
+     *
+     * @param \AppBundle\Entity\Proteomic $proteomic
+     */
+    public function removeProteomic(\AppBundle\Entity\Proteomic $proteomic)
+    {
+        $this->proteomics->removeElement($proteomic);
+    }
+
+    /**
+     * Get proteomics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProteomics()
+    {
+        return $this->proteomics;
+    }
+
 
     /**
      * Set expType

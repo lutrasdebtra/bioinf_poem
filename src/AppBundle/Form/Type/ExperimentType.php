@@ -8,6 +8,7 @@ use AppBundle\Entity\Metabolomic;
 use AppBundle\Form\Type\RNASeqType;
 use AppBundle\Form\Type\DNASeqType;
 use AppBundle\Form\Type\MetabolomicType;
+use AppBundle\Form\Type\ProteomicType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +24,8 @@ class ExperimentType extends AbstractType {
         $builder
             ->add('title', TextType::class)
             ->add('expType', ChoiceType::class, 
-                ['choices' => [''=>'','RNASeq' => 'RNASeq', 'Metabolomics' => 'Metabolomics', 'DNASeq' => 'DNASeq', 'Proteomics' => '']])
+                ['choices' => [''=>'','RNASeq' => 'RNASeq', 'Metabolomics' => 'Metabolomics', 'DNASeq' => 'DNASeq', 'Proteomics' => 'Proteomics']])
+
             ->add('rnaseqs', CollectionType::class, 
                 ['entry_type' => RNASeqType::class,'allow_add' => true, 
                 'by_reference' => false, 'allow_delete' => true])
@@ -33,6 +35,10 @@ class ExperimentType extends AbstractType {
             ->add('metabolomics', CollectionType::class, 
                 ['entry_type' => MetabolomicType::class,'allow_add' => true, 
                 'by_reference' => false, 'allow_delete' => true])
+            ->add('proteomics', CollectionType::class, 
+                ['entry_type' => ProteomicType::class,'allow_add' => true, 
+                'by_reference' => false, 'allow_delete' => true])
+            
             ->add('sampleNums', CollectionType::class,
                 ['entry_type' => IntegerType::class ,'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'prototype' => true, 'label' => 'Sample Number(s)' ])
             ->add('save', SubmitType::class, ['label' => 'Submit', 'attr' => array('class' => 'btn btn-success')]);

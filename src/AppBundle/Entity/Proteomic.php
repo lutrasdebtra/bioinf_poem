@@ -1,14 +1,14 @@
 <?php 
-// src/AppBundle/Entity/Metabolomic.php
+// src/AppBundle/Entity/Proteomic.php
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
- * @ORM\Table(name="metabolomic")
+ * @ORM\Table(name="proteomic")
  */
-class Metabolomic {
+class Proteomic {
 
 	/**
      * @ORM\Column(type="integer")
@@ -27,7 +27,7 @@ class Metabolomic {
     protected $quality;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Experiment", inversedBy="metabolomics")
+     * @ORM\ManyToOne(targetEntity="Experiment", inversedBy="proteomics")
      * @ORM\JoinColumn(name="experiment_id", referencedColumnName="id")
      * @Assert\Type(type="AppBundle\Entity\Experiment")
      * @Assert\Valid()
@@ -49,7 +49,7 @@ class Metabolomic {
      *
      * @param string $quality
      *
-     * @return Metabolomic
+     * @return Proteomic
      */
     public function setQuality($quality)
     {
@@ -73,7 +73,7 @@ class Metabolomic {
      *
      * @param \AppBundle\Entity\Experiment $experiment
      *
-     * @return Metabolomic
+     * @return Proteomic
      */
     public function setExperiment(\AppBundle\Entity\Experiment $experiment = null)
     {

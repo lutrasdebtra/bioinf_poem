@@ -6,6 +6,7 @@
             {% do form.rnaseqs.setRendered %}
             {% do form.dnaseqs.setRendered %}
             {% do form.metabolomics.setRendered %}
+            {% do form.proteomics.setRendered %}
 			{{ form_errors(form) }}
 
     		{{ form_row(form.title) }}
@@ -53,6 +54,14 @@
                     <div class="exptype-form-div">
                         <h3>Metabolomics Experiment</h3>
                         {{ form_row(metabolomic.quality) }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="proteomics" data-prototype="{{ form_widget(form.proteomics.vars.prototype)|e }}">
+            {% for proteomic in form.proteomics %}
+                    <div class="exptype-form-div">
+                        <h3> Proteomics Experiment</h3>
+                        {{ form_row(proteomic.quality) }}
                     </div>
                 {% endfor %}
             </div>

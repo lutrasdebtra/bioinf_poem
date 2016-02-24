@@ -49,6 +49,11 @@ jQuery(document).ready(function() {
                 $collectionHolder.append($newLinkLi);
                 $collectionHolder.data('index', $collectionHolder.find(':input').length);
                 addForm($collectionHolder, $newLinkLi, "Metabolomics Experiment");
+            } else if (optionSelect == 'Proteomics') {
+                $collectionHolder = $('div.proteomics');
+                $collectionHolder.append($newLinkLi);
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
+                addForm($collectionHolder, $newLinkLi, "Proteomics Experiment");
             }
         } else {
             $(this).val($.data(this, "value"));
