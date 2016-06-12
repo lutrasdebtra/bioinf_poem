@@ -45,3 +45,5 @@ edd266,127.0.0.1,POST,http://localhost:8000/app_dev.php/experiment/new,145635449
 37d3ef,127.0.0.1,POST,http://localhost:8000/app_dev.php/experiment/new,1456354670,,302
 e64b93,127.0.0.1,GET,http://localhost:8000/app_dev.php/experiment/index,1456354670,,200
 831c32,127.0.0.1,GET,http://localhost:8000/app_dev.php/experiment/new,1456960780,,200
+095645,127.0.0.1,GET,http://localhost:8000/images/blue-arrow.png,1465718125,b4d2a2,200
+b4d2a2,127.0.0.1,GET,http://localhost:8000/images/blue-arrow.png,1465718125,,404

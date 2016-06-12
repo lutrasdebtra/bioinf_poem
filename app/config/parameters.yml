@@ -4,7 +4,7 @@ parameters:
     database_port: null
     database_name: poem
     database_user: root
-    database_password: firefly1
+    database_password: tourde44
     mailer_transport: smtp
     mailer_host: localhost
     mailer_user: null

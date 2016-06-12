@@ -25,6 +25,14 @@ class Experiment {
     protected $title;
 
     /**
+     * @ORM\ManyToOne(targetEntity="SequenceRun", inversedBy="experiments")
+     * @ORM\JoinColumn(name="sequenceRun_id", referencedColumnName="id")
+     * @Assert\Type(type="AppBundle\Entity\SequenceRun")
+     * @Assert\Valid()
+     */
+    private $sequenceRun;
+
+    /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
@@ -58,6 +66,9 @@ class Experiment {
     public function __construct()
     {
         $this->rnaSeqs = new ArrayCollection();
+        $this->dnaSeqs = new ArrayCollection();
+        $this->metabolomics = new ArrayCollection();
+        $this->proteomics = new ArrayCollection();
     }
 
     /**
@@ -279,5 +290,29 @@ class Experiment {
     public function getExpType()
     {
         return $this->expType;
+    }
+
+    /**
+     * Set sequenceRun
+     *
+     * @param \AppBundle\Entity\SequenceRun $sequenceRun
+     *
+     * @return Experiment
+     */
+    public function setSequenceRun(\AppBundle\Entity\SequenceRun $sequenceRun = null)
+    {
+        $this->sequenceRun = $sequenceRun;
+
+        return $this;
+    }
+
+    /**
+     * Get sequenceRun
+     *
+     * @return \AppBundle\Entity\SequenceRun
+     */
+    public function getSequenceRun()
+    {
+        return $this->sequenceRun;
     }
 }
